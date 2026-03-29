@@ -27,7 +27,7 @@ zokou({
   // Header
   let header = `
 
-╭━━━〔 ✦ 𝐍𝐄𝐗𝐔𝐒-𝐀𝐈 ✦ 〕━━━◆
+╭━━━〔 ✦ LUCVOICE-XMD ✦ 〕━━━◆
 ┃ ◎ *OWNER*: ${s.OWNER_NAME}
 ┃ ◎ *PREFIX*    : None
 ┃ ◎ *MODE*      : ${mode}
@@ -36,7 +36,7 @@ zokou({
 ┃ ◎ *PLATFORM* : ${os.platform()}
 ┃ ◎ *CREATOR*  : PK Driller
 ┃ ◎ *COMMANDS* : ${cm.length}
-┃ ◎ *THEME*     : NEXUS-AI
+┃ ◎ *THEME*     : LUCVOICE-XMD
 ╰━━━━━━━━━━━━━━━━━━━━━━━◆
 `;
 
@@ -51,12 +51,12 @@ zokou({
   }
 
   // Footer
-  let footer = `\n🚀 Powered by *Pkdriller* | 2026💎`;
+  let footer = `\n🚀 Powered by *LUKA iT* | 2026💎`;
 
   try {
     // Send menu image with caption
     await sock.sendMessage(jid, {
-      image: { url: "https://files.catbox.moe/e2rhpu.jpg" },
+      image: { url: "https://files.catbox.moe/t21l69.png" },
       caption: header + body + footer,
       contextInfo: {
         mentionedJid: [sock.user.id],
@@ -64,7 +64,7 @@ zokou({
         isForwarded: true,
         forwardedNewsletterMessageInfo: {
           newsletterJid: "120363417804135599@newsletter",
-          newsletterName: "NEXUS-AI",
+          newsletterName: "LUCVOICE-XMD",
           serverMessageId: -1
         }
       }
