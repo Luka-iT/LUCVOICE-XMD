@@ -1,7 +1,7 @@
 {
   "bot-name": "LUCVOICE-XMD MULT DEVICE",
   "description": "Lucky Whatsapp device bot made by FrediEzra to help Whatsapp users to enjoy while helping...",
-  "logo": "https://files.catbox.moe/6rlmjb.jpg",
+  "logo": "https://files.catbox.moe/t21l69.png",
   "keywords": ["Pkdriller", "Pkdriller01", "Nexus-ai"],
   "documentation-link": "https://nexus-ai-pairing-site.onrender.com/",
   "owner-verification":"lukabrand254@gmail.com",
@@ -101,7 +101,7 @@
     },
     "URL": {
       "description": "you must add your bot image url.Get your image url now and fill it here",
-      "value": "https://files.catbox.moe/6rlmjb.jpg",
+      "value": "https://files.catbox.moe/t21l69.png",
       "required": true
     },
     "AUTO_READ_MESSAGES": {
