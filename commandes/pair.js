@@ -16,7 +16,7 @@ zokou(
         return repondre("*Please provide a number in the format: 255622......*");
       }
 
-      await repondre("*Please wait CHUGA-XMD... Generating pair code*");
+      await repondre("*Please wait LUCVOICE-XMD... Generating pair code*");
 
       const encodedNumber = encodeURIComponent(arg.join(" "));
       const apiUrl = `https://chugastan-1.onrender.com/code?number=${encodedNumber}`;
