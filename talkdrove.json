@@ -1,10 +1,10 @@
 {
-  "bot-name": "NEXUS-AI MULT DEVICE",
+  "bot-name": "LUCVOICE-XMD MULT DEVICE",
   "description": "Lucky Whatsapp device bot made by FrediEzra to help Whatsapp users to enjoy while helping...",
   "logo": "https://files.catbox.moe/6rlmjb.jpg",
   "keywords": ["Pkdriller", "Pkdriller01", "Nexus-ai"],
   "documentation-link": "https://nexus-ai-pairing-site.onrender.com/",
-  "owner-verification":"pkdriller520@gmail.com",
+  "owner-verification":"lukabrand254@gmail.com",
   "env": {
     "PREFIX":
     {
@@ -71,7 +71,7 @@
     },
     "BOT_NAME": {
       "description": "you must give a name for you bot uhh??!!",
-      "value": "NEXUS-AI",
+      "value": "LUCVOICE-XMD",
       "required": false 
     },
     "PUBLIC_MODE": {
@@ -111,7 +111,7 @@
     },
     "NUMERO_OWNER": {
       "description": "Your phone number (exclude '+' and area code, e.g., '255752593977')",
-      "value": "254794146821",
+      "value": "255768619068",
       "required": false
     },
     "WARN_COUNT": {
