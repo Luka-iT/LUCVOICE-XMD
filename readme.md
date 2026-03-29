@@ -46,7 +46,7 @@ Get your **Session ID** using one of the modern methods below:
 <p align="center"><table style="border-collapse: collapse; text-align: center; margin: auto;">
   <tr>
     <td>
-      <a href="https://iphone-xmd.onrender.com" target="_blank">
+      <a href="https://lucvoice-xmd-6590.onrender.com" target="_blank">
         <img src="https://img.shields.io/badge/GET_SESSION_ID-00C853?style=plastic&logo=whatsapp&logoColor=white&labelColor=0A0A0A" alt="Get Session" />
       </a>
     </td>
