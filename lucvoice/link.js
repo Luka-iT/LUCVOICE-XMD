@@ -71,7 +71,7 @@ If you are the owner, make sure your number is correctly set in set.js`);
       await mettreAJourAction(dest, 'warn');
       
       const replyText = isNewsletter ? 
-        `╭━━━〔 *RAHMANI-XMD* 〕━━━╮
+        `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ 🔗 *ANTI-LINK ACTIVATED*
 ┃
@@ -84,10 +84,10 @@ If you are the owner, make sure your number is correctly set in set.js`);
 ┃
 ┃ 📌 *Bot will monitor all links*
 ┃
-╰━━━〔 *POWERED BY NEXUS-AI* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *RAHMANI-XMD*` :
-        `╭━━━〔 *ÑEXUS-AI* 〕━━━╮
+⚡ *LUCVOICE-XMD*` :
+        `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ 🔗 *ANTI-LINK ACTIVATED*
 ┃
@@ -100,17 +100,17 @@ If you are the owner, make sure your number is correctly set in set.js`);
 ┃
 ┃ 📌 *Bot must be admin* to delete messages
 ┃
-╰━━━〔 *POWERED BY NEXUS-AI* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *NEXUS-AI*`;
+⚡ *LUCVOICE-XMD*`;
       
       return zk.sendMessage(dest, {
         text: replyText,
         contextInfo: {
           externalAdReply: {
-            title: "NEXUS-AI",
+            title: "LUCVOICE-XMD",
             body: "🔗 Anti-Link Activated",
-            thumbnailUrl: "https://files.catbox.moe/e2rhpu.jpg",
+            thumbnailUrl: "https://files.catbox.moe/t21l69.png",
             mediaType: 1,
             renderLargerThumbnail: true
           }
@@ -123,7 +123,7 @@ If you are the owner, make sure your number is correctly set in set.js`);
       await ajouterOuMettreAJourJid(dest, 'non');
       
       const replyText = isNewsletter ?
-        `╭━━━〔 *NEXUS-AI* 〕━━━╮
+        `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ 🔗 *ANTI-LINK DEACTIVATED*
 ┃
@@ -131,10 +131,10 @@ If you are the owner, make sure your number is correctly set in set.js`);
 ┃
 ┃ 📌 Links are now allowed in this newsletter
 ┃
-╰━━━〔 *POWERED BY NEXUS-AI* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *NEXUS-AI*` :
-        `╭━━━〔 *NEXUS-AI* 〕━━━╮
+⚡ *LUCVOICE-XMD*` :
+        `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ 🔗 *ANTI-LINK DEACTIVATED*
 ┃
@@ -142,17 +142,17 @@ If you are the owner, make sure your number is correctly set in set.js`);
 ┃
 ┃ 📌 Links are now allowed in this group
 ┃
-╰━━━〔 *POWERED BY NEXUS-AI* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *ÑEXUS-AI*`;
+⚡ *LUCVOICE-XMD*`;
       
       return zk.sendMessage(dest, {
         text: replyText,
         contextInfo: {
           externalAdReply: {
-            title: "NEXUS-AI",
+            title: "LUCVOICE-XMD",
             body: "🔗 Anti-Link Deactivated",
-            thumbnailUrl: "https://files.catbox.moe/e2rhpu.jpg",
+            thumbnailUrl: "https://files.catbox.moe/t21l69.png",
             mediaType: 1
           }
         }
@@ -186,7 +186,7 @@ Example: \`.antilink action warn\``);
       await mettreAJourAction(dest, dbAction);
       
       return zk.sendMessage(dest, {
-        text: `╭━━━〔 *NEXUS-AI* 〕━━━╮
+        text: `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ 🔗 *ACTION UPDATED*
 ┃
@@ -197,14 +197,14 @@ Example: \`.antilink action warn\``);
 ┃
 ┃ 📌 Bot must be admin to delete messages
 ┃
-╰━━━〔 *POWERED BY Nexus-ai* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *NEXUS-AI*`,
+⚡ *LUCVOICE-XMD*`,
         contextInfo: {
           externalAdReply: {
-            title: "NEXUS-AI",
+            title: "LUCVOICE-XMD",
             body: `Action: ${actionDisplay}`,
-            thumbnailUrl: "https://files.catbox.moe/e2rhpu.jpg",
+            thumbnailUrl: "https://files.catbox.moe/t21l69.png",
             mediaType: 1
           }
         }
@@ -284,7 +284,7 @@ or reply to user's message with \`.antilink reset\``);
       const locationType = isNewsletter ? "NEWSLETTER" : "GROUP";
       
       return zk.sendMessage(dest, {
-        text: `╭━━━〔 *NEXUS-AI* 〕━━━╮
+        text: `╭━━━〔 *LUCVOICE-XMD* 〕━━━╮
 ┃
 ┃ ${statusEmoji} *ANTI-LINK SETTINGS* (${locationType})
 ┃
@@ -315,9 +315,9 @@ or reply to user's message with \`.antilink reset\``);
 ┃
 ┃ ⚠️ *Bot must be admin to delete messages!*
 ┃
-╰━━━〔 *POWERED BY pkdriller* 〕━━━╯
+╰━━━〔 *POWERED BY LUKA iT* 〕━━━╯
 
-⚡ *ÑEXUS-AI*`
+⚡ *LUCVOICE-XMD*`
       }, { quoted: ms });
     }
     
