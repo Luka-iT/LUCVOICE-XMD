@@ -1,94 +1,78 @@
 const { zokou } = require('../framework/zokou');
-const {addOrUpdateDataInAlive , getDataFromAlive} = require('../bdd/alive')
+const { addOrUpdateDataInAlive, getDataFromAlive } = require('../bdd/alive');
 const moment = require("moment-timezone");
 const s = require(__dirname + "/../set");
 
-zokou(
-    {
-        nomCom : 'alive',
-        categorie : 'General'
-        
-    },async (dest,zk,commandeOptions) => {
+zokou({
+    nomCom: 'alive',
+    categorie: 'General'
+}, async (dest, zk, opts) => {
 
- const {ms , arg, repondre,superUser} = commandeOptions;
+    const { ms, arg, repondre, superUser } = opts;
+    const data = await getDataFromAlive();
 
- const data = await getDataFromAlive();
+    // 🔹 Si kuna arg, show saved alive
+    if (!arg || !arg[0] || arg.join('').trim() === '') {
 
- if (!arg || !arg[0] || arg.join('') === '') {
+        if (data) {
 
-    if(data) {
-       
-        const {message , lien} = data;
+            const { message, lien } = data;
+            const mode = (s.MODE.toLowerCase() === 'yes') ? 'public' : 'private';
 
+            moment.tz.setDefault('Etc/GMT');
+            const temps = moment().format('HH:mm:ss');
+            const date = moment().format('DD/MM/YYYY');
 
-        var mode = "public";
-        if ((s.MODE).toLocaleLowerCase() != "yes") {
-            mode = "private";
+            const alivemsg = `
+╭───【 LUCVOICE-XMD ALIVE 】───╮
+│ Owner : ${s.OWNER_NAME}
+│ Mode  : ${mode}
+│ Date  : ${date}
+│ GMT   : ${temps}
+╰─────────────────────────────╯
+
+${message}
+
+╰───✦ LUCVOICE-XMD-WABOT ✦───╯`;
+
+            if (lien?.match(/\.(mp4|gif)$/i)) {
+                try {
+                    await zk.sendMessage(dest, { video: { url: lien }, caption: alivemsg }, { quoted: ms });
+                } catch (e) {
+                    console.error("🥵🥵 Alive video error:", e);
+                    repondre("🥵🥵 Alive video error: " + e);
+                }
+            } else if (lien?.match(/\.(jpeg|png|jpg)$/i)) {
+                try {
+                    await zk.sendMessage(dest, { image: { url: lien }, caption: alivemsg }, { quoted: ms });
+                } catch (e) {
+                    console.error("🥵🥵 Alive image error:", e);
+                    repondre("🥵🥵 Alive image error: " + e);
+                }
+            } else {
+                repondre(alivemsg);
+            }
+
+        } else {
+            if (!superUser) return repondre("❌ There is no alive message set for this bot.");
+            repondre("⚡ You haven't saved an alive yet. To set it, use:\n.alive Your message;image_or_video_link\nDon't send fake stuff! 😎");
         }
-      
-    
-     
-    moment.tz.setDefault('Etc/GMT');
 
-// Créer une date et une heure en GMT
-const temps = moment().format('HH:mm:ss');
-const date = moment().format('DD/MM/YYYY');
+    } else { 
+        // 🔹 Only owner can set alive
+        if (!superUser) return repondre("❌ Only the bot owner can modify the alive message.");
 
-    const alivemsg = `
-*Owner* : ${s.OWNER_NAME}
-*Mode* : ${mode}
-*Date* : ${date}
-*Hours(GMT)* : ${temps}
+        const texte = arg.join(' ').split(';')[0];
+        const tlien = arg.join(' ').split(';')[1];
 
- ${message}
- 
- 
- *CHUGA-XMD-WABOT*`
+        await addOrUpdateDataInAlive(texte, tlien);
 
- if (lien.match(/\.(mp4|gif)$/i)) {
-    try {
-        zk.sendMessage(dest, { video: { url: lien }, caption: alivemsg }, { quoted: ms });
+        const confirmMsg = `
+👋 Hello! I am *LUCVCHUGA-XMD-WABOTive 24/7 Just Like You!*
+🌟 Thanks to God 🌟
+🤗 Enjoy Life!
+✦ LUCVOICE-XMD ✦`;
+
+        repondre(confirmMsg);
     }
-    catch (e) {
-        console.log("🥵🥵 Menu error " + e);
-        repondre("🥵🥵 Menu error " + e);
-    }
-} 
-// Checking for .jpeg or .png
-else if (lien.match(/\.(jpeg|png|jpg)$/i)) {
-    try {
-        zk.sendMessage(dest, { image: { url: lien }, caption: alivemsg }, { quoted: ms });
-    }
-    catch (e) {
-        console.log("🥵🥵 Menu erreur " + e);
-        repondre("🥵🥵 Menu erreur " + e);
-    }
-} 
-else {
-    
-    repondre(alivemsg);
-    
-}
-
-    } else {
-        if(!superUser) { repondre("there is no alive for this bot") ; return};
-
-      await   repondre("You have not yet saved your alive, to do this;  enter after alive your message and your image or video link in this context: .alive message;lien");
-         repondre("don't do fake thinks :)")
-     }
- } else {
-
-    if(!superUser) { repondre ("Only the owner can  modify the alive") ; return};
-
-  
-    const texte = arg.join(' ').split(';')[0];
-    const tlien = arg.join(' ').split(';')[1]; 
-
-
-    
-await addOrUpdateDataInAlive(texte , tlien)
-
-repondre(' Hello👋 ,*I am chuga-xmd👍* _*Am Alive 24/7 Just Like You😊*_ *🌟Thanks To God🌟* _ENJOY LIFE🤗_. ')
-
-}
-    });
+});
