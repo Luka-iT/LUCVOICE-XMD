@@ -1,7 +1,7 @@
-const {zokou} = require("../framework/zokou");
-const {getMessagesAndXPByJID,getBottom10Users} = require("../bdd/level");
+const { zokou } = require("../framework/zokou");
+const { getMessagesAndXPByJID, getBottom10Users } = require("../bdd/level");
 
-
+// 🔹 Function to calculate level & exp
 function get_level_exp(xp) {
     const levelThresholds = [
         { level: 1, xpThreshold: 500 },
@@ -11,299 +11,144 @@ function get_level_exp(xp) {
         { level: 5, xpThreshold: 7000 },
         { level: 6, xpThreshold: 10000 },
         { level: 7, xpThreshold: 15000 },
-        { level: 8, xpThreshold: 20000},
-        { level: 9, xpThreshold: 25000},
-        { level: 10, xpThreshold: 30000},
-        { level: 11, xpThreshold: 35000},
-        { level: 12, xpThreshold: 45000},
-        { level: 13, xpThreshold: 55000},
-        { level: 14, xpThreshold: 65000},
-        { level: 15, xpThreshold: 75000},
-        { level: 16, xpThreshold: 90000},
-        { level: 17, xpThreshold: 105000},
-        { level: 18, xpThreshold: 120000},
-        { level: 19, xpThreshold: 135000},
-        { level: 20, xpThreshold: 150000},
-        { level: 21, xpThreshold: 170000},
-        { level: 22, xpThreshold: 190000},
-        { level: 23, xpThreshold: 210000},
-        { level: 24, xpThreshold: 230000},
-        { level: 25, xpThreshold: 255000},
-        { level: 26, xpThreshold: 270000},
-        { level: 27, xpThreshold: 295000},
-        { level: 28, xpThreshold: 320000},
-        { level: 29, xpThreshold: 345000},
-        { level: 30, xpThreshold: 385000},
-        { level: 31, xpThreshold: 425000},
-        { level: 32, xpThreshold: 465000},
-        { level: 33, xpThreshold: 505000},
-        { level: 34, xpThreshold: 545000},
-        { level: 35, xpThreshold: 590000},
-        { level: 36, xpThreshold: 635000},
-        { level: 37, xpThreshold: 680000},
-        { level: 38, xpThreshold: 725000},
-        { level: 39, xpThreshold: 770000},
-        { level: 40, xpThreshold: 820000},
-        { level: 41, xpThreshold: 870000},
-        { level: 42, xpThreshold: 920000},
-        { level: 43, xpThreshold: 970000},
-        { level: 44, xpThreshold: 1020000},
-        { level: 45, xpThreshold: 1075000},
-        { level: 46, xpThreshold: 1130000},
-        { level: 47, xpThreshold: 1185000},
-        { level: 48, xpThreshold: 1240000},
-        { level: 49, xpThreshold: 1295000},
-        { level: 'Zk-GOD', xpThreshold: 2000000}
+        { level: 8, xpThreshold: 20000 },
+        { level: 9, xpThreshold: 25000 },
+        { level: 10, xpThreshold: 30000 },
+        { level: 11, xpThreshold: 35000 },
+        { level: 12, xpThreshold: 45000 },
+        { level: 13, xpThreshold: 55000 },
+        { level: 14, xpThreshold: 65000 },
+        { level: 15, xpThreshold: 75000 },
+        { level: 16, xpThreshold: 90000 },
+        { level: 17, xpThreshold: 105000 },
+        { level: 18, xpThreshold: 120000 },
+        { level: 19, xpThreshold: 135000 },
+        { level: 20, xpThreshold: 150000 },
+        { level: 21, xpThreshold: 170000 },
+        { level: 22, xpThreshold: 190000 },
+        { level: 23, xpThreshold: 210000 },
+        { level: 24, xpThreshold: 230000 },
+        { level: 25, xpThreshold: 255000 },
+        { level: 26, xpThreshold: 270000 },
+        { level: 27, xpThreshold: 295000 },
+        { level: 28, xpThreshold: 320000 },
+        { level: 29, xpThreshold: 345000 },
+        { level: 30, xpThreshold: 385000 },
+        { level: 31, xpThreshold: 425000 },
+        { level: 32, xpThreshold: 465000 },
+        { level: 33, xpThreshold: 505000 },
+        { level: 34, xpThreshold: 545000 },
+        { level: 35, xpThreshold: 590000 },
+        { level: 36, xpThreshold: 635000 },
+        { level: 37, xpThreshold: 680000 },
+        { level: 38, xpThreshold: 725000 },
+        { level: 39, xpThreshold: 770000 },
+        { level: 40, xpThreshold: 820000 },
+        { level: 41, xpThreshold: 870000 },
+        { level: 42, xpThreshold: 920000 },
+        { level: 43, xpThreshold: 970000 },
+        { level: 44, xpThreshold: 1020000 },
+        { level: 45, xpThreshold: 1075000 },
+        { level: 46, xpThreshold: 1130000 },
+        { level: 47, xpThreshold: 1185000 },
+        { level: 48, xpThreshold: 1240000 },
+        { level: 49, xpThreshold: 1295000 },
+        { level: 'Zk-GOD', xpThreshold: 2000000 }
     ];
 
-    let level = 0;
-    let exp = xp;
-    let xplimit = levelThresholds[level].xpThreshold;
+    let level = 0, exp = xp, xplimit = levelThresholds[0].xpThreshold;
 
     for (let i = 0; i < levelThresholds.length; i++) {
         if (xp >= levelThresholds[i].xpThreshold) {
             level = levelThresholds[i].level;
-            xplimit = levelThresholds[i + 1]?.xpThreshold || 'No-limit';
+            xplimit = levelThresholds[i + 1]?.xpThreshold || '∞';
             exp = xp - levelThresholds[i].xpThreshold;
-        } else {
-            break;
-        }
+        } else break;
     }
 
-    return {
-        level: level,
-        xplimit: xplimit,
-        exp: exp
-    };
+    return { level, xplimit, exp };
 }
 
-module.exports = {
-   get_level_exp,
-} ;
+module.exports = { get_level_exp };
 
-zokou( {
-  nomCom : "rank",
- categorie : "Fun",
-   }, 
-   async(dest,zk, commandeOptions)=> {
-  
-    const {ms , repondre,auteurMessage,nomAuteurMessage, msgRepondu , auteurMsgRepondu , mybotpic} = commandeOptions ;
+// 🔹 Rank command
+zokou({
+    nomCom: "rank",
+    categorie: "Fun"
+}, async (dest, zk, opts) => {
+    const { ms, repondre, auteurMessage, nomAuteurMessage, msgRepondu, auteurMsgRepondu, mybotpic } = opts;
 
-  if (msgRepondu) {
-      
-       try {
-          
-        let rank = await getMessagesAndXPByJID(auteurMsgRepondu) ;
+    const jid = msgRepondu ? auteurMsgRepondu : auteurMessage;
+    try {
+        const rank = await getMessagesAndXPByJID(jid);
+        const data = get_level_exp(rank.xp);
 
-        const data = await get_level_exp(rank.xp)
-         let ppuser ;
-    
-         
-         try {
-              ppuser = await zk.profilePictureUrl(auteurMsgRepondu , 'image') ;
-         } catch {
-            ppuser = mybotpic()
-         } ;
-    
-    
-         let role ;
-    
-         if (data.level < 5) {
-            role = 'baby'
-         } else if (data.level >= 5 && data.level < 10) {
-            role = 'kid-Ninja'
-         } else if ( data.level >= 10 && data.level < 15 ) {
-            role = 'Ninja-genin'
-         } else if ( data.level >= 15 && data.level < 20 ) {
-            role = 'Ninja-chunin'
-         } else if ( data.level >= 20 && data.level < 25 ) {
-            role = 'Ninja-jonin'
-         } else if ( data.level >= 25 && data.level < 30 ) {
-            role = 'ANBU'
-         } else if ( data.level >= 30 && data.level < 35 ) {
-            role = 'strong ninja'
-         } else if ( data.level >= 35 && data.level < 40 ) {
-            role = 'kage'
-         } else if ( data.level >= 40 && data.level < 45 ) {
-            role = 'Hermit seinin'
-         } else if ( data.level >= 45 && data.level < 50 ) {
-            role = 'Otsusuki'
-         } else {
-            role = 'GOD'
-         }
-    
-    
-         let msg = `
-┏━━━┛ CHUGA  rank menu ┗━━━┓
-         
-    *Name :* @${auteurMsgRepondu.split("@")[0]}
-    
-    *Level :* ${data.level}
-    
-    *EXP :* ${data.exp}/${data.xplimit}
-    
-    *Role :* ${role}
+        let ppuser;
+        try { ppuser = await zk.profilePictureUrl(jid, 'image'); } 
+        catch { ppuser = mybotpic(); }
 
-    *Messages :* ${rank.messages}
-    
-   ┕━✿━┑ 𝐂𝐇𝐔𝐆𝐀 𝐗𝐌𝐃 ┍━✿━┙`
-    
-     zk.sendMessage( 
-        dest,
-        {
-            image : {url : ppuser},
-            caption : msg,
-            mentions : [auteurMsgRepondu]
-        },
-        {quoted : ms}
-      )
+        let role = getRoleByLevel(data.level);
 
+        const msg = `
+╭───【 LUCVOICE-XMD RANK 】───╮
+│ Name     : ${msgRepondu ? `@${jid.split("@")[0]}` : nomAuteurMessage}
+│ Level    : ${data.level}
+│ EXP      : ${data.exp}/${data.xplimit}
+│ Role     : ${role}
+│ Messages : ${rank.messages}
+╰───────────────✦ LUCVOICE-XMD ✦───╯`;
 
-       } catch (error) {
-         repondre(error)
-       }
-  }   else {
+        zk.sendMessage(dest, { image: { url: ppuser }, caption: msg, mentions: msgRepondu ? [jid] : [] }, { quoted: ms });
 
+    } catch (error) {
+        repondre("_🥺 Error fetching rank for LUCVOICE-XMD_");
+        console.error(error);
+    }
+});
 
-      try {
-        
-        let jid = auteurMessage ;
-          
-        let rang = await getMessagesAndXPByJID(jid) ;
+// 🔹 Toprank command
+zokou({
+    nomCom: "toprank",
+    categorie: "Fun"
+}, async (dest, zk, opts) => {
+    const { ms, mybotpic } = opts;
 
-        const data =  get_level_exp(rang.xp)
-         let ppuser ;
-    
-         
-         try {
-              ppuser = await zk.profilePictureUrl(jid, 'image') ;
-         } catch {
-            ppuser = mybotpic()
-         } ;
-    
-    
-         let role ;
-    
-         if (data.level < 5) {
-            role = 'Nouveau né(e)'
-         } else if (data.level >= 5 && data.level < 10) {
-            role = 'kid-Ninja'
-         } else if ( data.level >= 10 && data.level < 15 ) {
-            role = 'Ninja-genin'
-         } else if ( data.level >= 15 && data.level < 20 ) {
-            role = 'Ninja-chunin'
-         } else if ( data.level >= 20 && data.level < 25 ) {
-            role = 'Ninja-jonin'
-         } else if ( data.level >= 25 && data.level < 30 ) {
-            role = 'ANBU'
-         } else if ( data.level >= 30 && data.level < 35 ) {
-            role = 'strong ninja'
-         } else if ( data.level >= 35 && data.level < 40 ) {
-            role = 'kage'
-         } else if ( data.level >= 40 && data.level < 45 ) {
-            role = 'Hermit seinin'
-         } else if ( data.level >= 45 && data.level < 50 ) {
-            role = 'Otsusuki'
-         } else {
-            role = 'level-GOD'
-         }
-    
-    
-         let msg = `
-┏━━━┛ 𝐂𝐇𝐔𝐆𝐀 𝐗𝐌𝐃 rank menu  ┗━━━┓
-     
-  *Name :* ${nomAuteurMessage}
+    try {
+        const topRanks = await getBottom10Users();
+        let mentions = [], msg = `╭───【 LUCVOICE-XMD TOP 10 】───╮\n`;
 
-  *Level :* ${data.level}
-
-  *EXP :* ${data.exp}/${data.xplimit}
-
-  *Role :* ${role}
-
-  *Messages :* ${rang.messages}
-
-   ┕━✿━┑ 𝐂𝐇𝐔𝐆𝐀 𝐗𝐌𝐃 ┍━✿━┙`
-    
-     zk.sendMessage( 
-        dest,
-        {
-            image : {url : ppuser},
-            caption : msg
-        },
-        {quoted : ms}
-      )
-
-      } catch (error) {
-         repondre(error)
-      }
-
-    } 
-
-
-}) ;
-
-zokou( {
-  nomCom : "toprank",
- categorie : "Fun",
-   }, 
-   async(dest,zk, commandeOptions)=> {
-  
-    const {ms , mybotpic} = commandeOptions ;
-
-
-       let msg = `┏━━┛𝐂𝐇𝐔𝐆𝐀 𝐌𝐃 ┗━━┓\n\n`
-       
-      let topRanks = await getBottom10Users() ;
-        let mention = [] ;
-        for (const rank of topRanks ) {
-
-             const data = await get_level_exp(rank.xp) ;
-
-             let role ;
-    
-         if (data.level < 5) {
-            role = 'Nouveau né(e)'
-         } else if (data.level >= 5 && data.level < 10) {
-            role = 'kid ninja'
-         } else if ( data.level >= 10 && data.level < 15 ) {
-            role = 'Ninja-genin'
-         } else if ( data.level >= 15 && data.level < 20 ) {
-            role = 'Ninja-chunin'
-         } else if ( data.level >= 20 && data.level < 25 ) {
-            role = 'Ninja-jonin'
-         } else if ( data.level >= 25 && data.level < 30 ) {
-            role = 'ANBU'
-         } else if ( data.level >= 30 && data.level < 35 ) {
-            role = 'strong ninja'
-         } else if ( data.level >= 35 && data.level < 40 ) {
-            role = 'kage'
-         } else if ( data.level >= 40 && data.level < 45 ) {
-            role = 'Hermit seinin'
-         } else if ( data.level >= 45 && data.level < 50 ) {
-            role = 'Otsusuki'
-         } else {
-            role = 'level-GOD'
-         }
-            msg += `-----------------------
-            
- *Name :* @${rank.jid.split("@")[0]}
-*Level :* ${data.level}
-*Role :* ${role}\n` ;
-
-        mention.push(rank.jid) ;
+        for (const rank of topRanks) {
+            const data = get_level_exp(rank.xp);
+            const role = getRoleByLevel(data.level);
+            msg += `
+-----------------------
+Name : @${rank.jid.split("@")[0]}
+Level: ${data.level}
+Role : ${role}\n`;
+            mentions.push(rank.jid);
         }
 
-       zk.sendMessage(dest,
-                      {
-                        image : { url : mybotpic() },
-                        caption : msg,
-                        mentions : mention
-                      },
-                      {quoted : ms})
-       
+        msg += `╰───────────────✦ LUCVOICE-XMD ✦───╯`;
 
-   })
+        zk.sendMessage(dest, { image: { url: mybotpic() }, caption: msg, mentions }, { quoted: ms });
 
+    } catch (error) {
+        console.error("Error fetching top ranks:", error);
+        zk.sendMessage(dest, { text: "_🥺 Error fetching top ranks_" }, { quoted: ms });
+    }
+});
 
-   
-    
+// 🔹 Helper: determine role by level
+function getRoleByLevel(level) {
+    if (level < 5) return 'Nouveau né(e)';
+    if (level < 10) return 'Kid-Ninja';
+    if (level < 15) return 'Ninja-Genin';
+    if (level < 20) return 'Ninja-Chunin';
+    if (level < 25) return 'Ninja-Jonin';
+    if (level < 30) return 'ANBU';
+    if (level < 35) return 'Strong Ninja';
+    if (level < 40) return 'Kage';
+    if (level < 45) return 'Hermit Seinin';
+    if (level < 50) return 'Otsusuki';
+    return 'GOD';
+}
