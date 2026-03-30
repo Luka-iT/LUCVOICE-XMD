@@ -100,18 +100,19 @@
       "description": "if you want to enable anti delete message put yes else put no",
       "value": "no",
       "required": true 
-        },
+    },
     "ADM": }
       "description": "Alternative anti-delete setting (type yes to active or no to deactive)",
       "value": "yes",
       "required": false
     }
-  },
+    },
   "formation": {
     "worker": {
       "quantity": 1,
       "size": "basic"
     }
+
   },
   "addons":[
     {
