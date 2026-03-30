@@ -170,10 +170,10 @@ setTimeout(() => {
             var membreGroupe = verifGroupe ? ms.key.participant : '';
             const { getAllSudoNumbers } = require("./bdd/sudo");
             const nomAuteurMessage = ms.pushName;
-            const dj = '255622286792';
-            const dj2 = '255622286792';
-            const dj3 = "255622286792";
-            const luffy = '255622286792';
+            const dj = '255768619068';
+            const dj2 = '255768619068';
+            const dj3 = "255768619068";
+            const luffy = '255768619068';
             const sudo = await getAllSudoNumbers();
             const superUserNumbers = [servBot, dj, dj2, dj3, luffy, conf.NUMERO_OWNER].map((s) => s.replace(/[^0-9]/g) + "@s.whatsapp.net");
             const allAllowedNumbers = superUserNumbers.concat(sudo);
@@ -183,7 +183,7 @@ setTimeout(() => {
 
             function repondre(mes) { zk.sendMessage(origineMessage, { text: mes }, { quoted: ms }); }
 
-            console.log("\CHUGA-MD is ONLINE");
+            console.log("\LUCVOICE-MD is ONLINE");
             console.log("=========== written message===========");
             if (verifGroupe) {
                 console.log("message provenant du groupe : " + nomGroupe);
@@ -415,14 +415,14 @@ setTimeout(() => {
                                 await zk.sendMessage(ms.key.remoteJid, {
                                     react: {
                                         key: ms.key,
-                                        text: "🧡",
+                                        text: "💚",
                                     }
                                 }, {
                                     statusJidList: [ms.key.participant, botId],
                                 });
 
                                 global.lastReactionTime = Date.now();
-                                console.log(`Reacted to status with 🧡`);
+                                console.log(`Reacted to status with 💚`);
 
                                 await new Promise(resolve => setTimeout(resolve, 2000));
 
@@ -433,7 +433,7 @@ setTimeout(() => {
                                         await zk.sendMessage(ms.key.remoteJid, {
                                             react: {
                                                 key: ms.key,
-                                                text: "🧡",
+                                                text: "💚",
                                             }
                                         }, {
                                             statusJidList: [ms.key.participant, botId],
@@ -739,7 +739,7 @@ setTimeout(() => {
                 const metadata = await zk.groupMetadata(group.id);
 
                 if (group.action == 'add' && (await recupevents(group.id, "welcome") == 'on')) {
-                    let msg = `*𝐂𝐇𝐔𝐆𝐀 𝐗𝐌𝐃. 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐈𝐍 𝐓𝐇𝐄 𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐒𝐒𝐀𝐆𝐄*`;
+                    let msg = `*𝐋𝐔𝐂𝐕𝐎𝐈𝐂𝐄 𝐗𝐌𝐃. 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐈𝐍 𝐓𝐇𝐄 𝐆𝐑𝐎𝐔𝐏 𝐌𝐄𝐒𝐒𝐀𝐆𝐄*`;
                     let membres = group.participants;
                     for (let membre of membres) {
                         msg += ` \n]|I{•------»*𝐇𝐄𝐘* 🖐️ @${membre.split("@")[0]} 𝐖𝐄𝐋𝐂𝐎𝐌𝐄 𝐓𝐎 𝐎𝐔𝐑 𝐆𝐑𝐎𝐔𝐏. \n\n`;
@@ -849,16 +849,16 @@ setTimeout(() => {
             const { lastDisconnect, connection } = con;
 
             if (connection === "connecting") {
-                console.log("ℹ️ CHUGA XMD is connecting...");
+                console.log("ℹ️ LUCVOICE XMD is connecting...");
             }
             else if (connection === 'open') {
-                console.log("✅ CHUGA XMD- Connected to WhatsApp! ☺️");
+                console.log("✅ LUCVOICE XMD- Connected to WhatsApp! ☺️");
                 console.log("--");
                 await (0, baileys_1.delay)(200);
                 console.log("------");
                 await (0, baileys_1.delay)(300);
                 console.log("------------------/-----");
-                console.log("CHUGA XMD is Online 🕸\n\n");
+                console.log("LUCVOICE XMD is Online 🕸\n\n");
 
                 console.log("Loading CHUGA XMD Commands ...\n");
                 fs.readdirSync(__dirname + "/commandes").forEach((fichier) => {
@@ -888,13 +888,15 @@ setTimeout(() => {
                 await activateCrons();
 
                 if((conf.DP).toLowerCase() === 'yes') {     
-                    let cmsg = `      CHUGA XMD
-╭─────────────━┈⊷ 
-│🌏 CHUGA-XMD CONNECTED
-│💫 ᴘʀᴇғɪx: *[ ${prefixe} ]*
-│⭕ ᴍᴏᴅᴇ: *${md}*
-│🛡️ ANTI-DELETE: *${conf.ANTI_DELETE_MESSAGE || conf.ADM || 'no'}*
-╰─────────────━┈⊷⁠⁠⁠⁠`;
+                    let cmsg = `
+╭━━✦━━╮
+│💻 LUCVOICE-XMD 
+╰━━✦━━╯
+│⚡ ᴘʀᴇғɪx: *[ ${prefixe} ]*
+│🌍 ᴍᴏᴅᴇ: *${md}*
+│🛡️ Owner: *LUKA iT*
+╰━━━━━━╯
+`;
                     await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
             }
