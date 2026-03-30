@@ -6,8 +6,8 @@
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Nosifer&size=38&pause=1000&center=true&width=435&lines=LUCVOICE-XMD" alt="Typing SVG" /></a>
 
 <p align="center">  
-  <a href="https://files.catbox.moe/2v4jbh.png">
-    <img alt="secktor docs" height="300" src="https://files.catbox.moe/2v4jbh.png"   -<h1 align="center"> 
+  <a href="https://files.catbox.moe/gxfiw0.png">
+    <img alt="secktor docs" height="300" src="https://files.catbox.moe/gxfiw0.png"   -<h1 align="center"> 
     </h1>
   </a>
 </p>  
