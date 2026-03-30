@@ -60,3 +60,6 @@
       <td><a href="https://github.com/mrfrankofcc/SUBZERO-MD/archive/refs/heads/main.zip" target="_blank"><img src="https://img.shields.io/badge/Panel-File-CC00FF?style=for-the-badge&logo=huggingface&logoColor=white&labelColor=000000"/></a></td>
     </tr>
  
+## DEVELOPER SUPPORT
+
+<a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=BlackOpsOne&size=18&pause=1000&color=F51FFF&center=true&width=435&lines=THANK+YOU+FOR+USING+LUCVOICE-XMD+" alt="Typing SVG" /></a>
