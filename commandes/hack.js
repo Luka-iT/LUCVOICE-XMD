@@ -1,49 +1,56 @@
-const {
-  zokou
-} = require("../framework/zokou");
+const { zokou } = require("../framework/zokou");
+
 zokou({
-  'nomCom': "hack",
-  'categorie': "Fun",
-  'reaction': '😈'
-}, async (_0x31874c, _0x23f5d8, _0x2bf6f3) => {
-  const {
-    repondre: _0x988825,
-    arg: _0x123444,
-    prefixe: _0x1e90cb
-  } = _0x2bf6f3;
+  nomCom: "hack",
+  categorie: "Fun",
+  reaction: '😈'
+}, async (dest, zk, opts) => {
+  const { repondre, arg, prefixe, nomAuteurMessage } = opts;
+
   try {
-    const _0x3c1805 = ["```😈 Chuga xmd Injecting malware😈```", "```🔐 starting into device \n 0%```", "```♻️ transfering photos \n █ 10%```", "```♻️ transfer successful \n █ █ 20%```", "```♻️ transfering videos \n █ █ █ 30%```","```♻️ transfer successful \n █ █ █ █ 40%```","```♻️ transfering audio \n █ █ █ █ █ 50%```","```♻️ transfer successful \n █ █ █ █ █ █ 60%```","```♻️ transfering hidden files \n █ █ █ █ █ █ █ 70%```","```♻️ transfer successful \n █ █ █ █ █ █ █ █ 80%```","```♻️ transfering whatsapp chat \n █ █ █ █ █ █ █ █ █ 90%```","```♻️ transfer successful \n █ █ █ █ █ █ █ █ █ █ 100%```","```📲 System hyjacking on process.. \n Conecting to Server```","```🔌 Divice successfully connected... \n Riciving data...```","```💡 Data hyjacked from divice 100% completed \n killing all evidence killing all malwares...```","```🔋 HACKING COMPLETED```","```📤 SENDING PHONE DOCUMENTS```","``😈 KEEP USING CHUGA XMD```"];
-    for (const _0x4c7ce1 of _0x3c1805) {
-      try {
-        await _0x988825(_0x4c7ce1);
-        await new Promise(_0x5458dc => setTimeout(_0x5458dc, 2000));
-      } catch (_0x191491) {
-        console.error("Error sending loading message:", _0x191491);
-      }
+    // 🔹 Steps za prank
+    const hackSteps = [
+      "```😈 LUCVOICE-XMD Injecting malware... 😈```",
+      "```🔐 Accessing target device...\n0%```",
+      "```♻️ Transferring photos\n█ 10%```",
+      "```♻️ Transfer successful\n█ █ 20%```",
+      "```♻️ Transferring videos\n█ █ █ 30%```",
+      "```♻️ Transfer successful\n█ █ █ █ 40%```",
+      "```♻️ Transferring audio files\n█ █ █ █ █ 50%```",
+      "```♻️ Transfer successful\n█ █ █ █ █ █ 60%```",
+      "```♻️ Transferring hidden files\n█ █ █ █ █ █ █ 70%```",
+      "```♻️ Transfer successful\n█ █ █ █ █ █ █ █ 80%```",
+      "```♻️ Transferring WhatsApp chats\n█ █ █ █ █ █ █ █ █ 90%```",
+      "```♻️ Transfer successful\n█ █ █ █ █ █ █ █ █ █ 100%```",
+      "```📲 System hijacking in progress...\nConnecting to server```",
+      "```🔌 Device connected successfully\nReceiving data...```",
+      "```💡 Data hijacked 100% completed\nCleaning traces & malwares...```",
+      "```🔋 HACKING COMPLETED```",
+      "```📤 Sending documents to LUCVOICE-XMD server...```",
+      "```😈 KEEP USING LUCVOICE-XMD 😈```"
+    ];
+
+    for (const step of hackSteps) {
+      await repondre(step);
+      await new Promise(resolve => setTimeout(resolve, 2000)); // suspense
     }
-    const _0x452d = "```🗂️ ALL FILES TRANSFERRED```";
-    try {
-      await _0x988825(_0x452d);
-    } catch (_0x3842d7) {
-      console.error("Error sending prank message:", _0x3842d7);
-      return await _0x988825("_🙏 An error occurred while sending the main prank message 🤨_");
+
+    // 🔹 Final files message
+    await repondre("```🗂️ ALL FILES TRANSFERRED SUCCESSFULLY```");
+
+    // 🔹 Countdown effect
+    const countdown = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
+    for (const num of countdown) {
+      await repondre(````❇️ SUCCESSFULLY SENT DATA! Disconnecting... 📤 [${num}]````);
+      await new Promise(resolve => setTimeout(resolve, 1000));
     }
-    const _0x5ed8e2 = ['10', '9', '8', '7', '6', '5', '4', '3', '2', '1'];
-    for (const _0x30d275 of _0x5ed8e2) {
-      try {
-        await _0x988825("```❇️ SUCCESSFULLY SENT DATA AND Connection disconnected 📤```");
-        await new Promise(_0x2364d6 => setTimeout(_0x2364d6, 1000));
-      } catch (_0x298470) {
-        console.error("Error during countdown:", _0x298470);
-      }
-    }
-    try {
-      await _0x988825("😈 *VICTIM SYSTEM DEMOLISHED!* 😈");
-    } catch (_0x34d0ce) {
-      console.error("Error sending final message:", _0x34d0ce);
-    }
-  } catch (_0x3c8a28) {
-    console.error("Critical error in prank script:", _0x3c8a28);
-    return await _0x988825("_🥺 A critical error occurred during the prank 😂_");
+
+    // 🔹 Dramatic final message
+    await repondre("😈 *VICTIM SYSTEM DEMOLISHED!* 😈");
+    await repondre("💡 *Powered by LUCVOICE-XMD*");
+    
+  } catch (err) {
+    console.error("Critical error in LUCVOICE-XMD prank script:", err);
+    await repondre("_🥺 A critical error occurred during the LUCVOICE-XMD prank 😂_");
   }
 });
