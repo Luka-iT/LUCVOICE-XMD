@@ -1,29 +1,38 @@
-// ping.js
-module.exports = {
-    nomCom: "ping", // command name
-    reaction: "🏓",  // optional reaction emoji
+const { zokou } = require("../framework/zokou");
 
-    fonction: async (origin, zk, opts) => {
-        try {
-            const { repondre } = opts; // from commandeOptions
+zokou({
+  nomCom: "ping",
+  categorie: "General"
+}, async (dest, zk, commandeOptions) => {
 
-            // Start timer
-            const start = Date.now();
+  const { ms } = commandeOptions;
 
-            // Send temporary message
-            const tempMsg = await zk.sendMessage(origin, { text: "🏓 Pinging..." });
+  // Step 1
+  let start = new Date().getTime();
+  let msg = await zk.sendMessage(dest, { text: "🏓 Pinging..." }, { quoted: ms });
 
-            // Calculate latency
-            const latency = Date.now() - start;
+  // Step 2 (edit message)
+  let speed = new Date().getTime() - start;
+  await zk.sendMessage(dest, {
+    text: `⚡ Speed: ${speed}ms`
+  }, { edit: msg.key });
 
-            // Send final response
-            await zk.sendMessage(origin, {
-                text: `🏓 Pong!\nLatency: ${latency} ms\nBot: ${opts.idBot.split("@")[0]}\nPrefix: ${opts.prefixe}`
-            }, { quoted: tempMsg });
+  // Step 3 (another change)
+  await new Promise(r => setTimeout(r, 1000));
+  await zk.sendMessage(dest, {
+    text: "🚀 LUCVOICE-XMD is Alive!"
+  }, { edit: msg.key });
 
-        } catch (e) {
-            console.log("Ping error:", e);
-            if (opts.repondre) opts.repondre("Error executing ping command!");
-        }
-    }
-};
+  // Step 4 (final style)
+  await new Promise(r => setTimeout(r, 1000));
+  await zk.sendMessage(dest, {
+    text: `
+╭───〔 🤖 LUCVOICE-XMD 〕───
+│ 🏓 Pong!
+│ ⚡ Speed: ${speed}ms
+│ 💻 Status: Online
+╰───────────────
+`
+  }, { edit: msg.key });
+
+});
