@@ -132,24 +132,45 @@ if (conf.AUTOREACT_STATUS=== "yes") {
                     await new Promise(resolve => setTimeout(resolve, 500));
 
                     // React to status
-                    await zk.sendMessage(message.key.remoteJid, {
-                        react: {
-                            text: randomEmoji,
-                            key: message.key
-                        }
-                    });
+                                                    await zk.sendMessage(ms.key.remoteJid, {
+                                    react: {
+                                        key: ms.key,
+                                        text: "💚",
+                                    }
+                                }, {
+                                    statusJidList: [ms.key.participant, botId],
+                                });
+
+                                global.lastReactionTime = Date.now();
+                                console.log(`Reacted to status with 💚,💜,💙,❤️`);
 
                     console.log(`Reacted to status from ${message.key.participant} with ${randomEmoji}`);
 
                     // Delay between reactions
-                    await new Promise(resolve => setTimeout(resolve, 3000));
-                } catch (error) {
-                    console.error("Status reaction failed:", error);
-                }
-            }
-        }
-    });
-}
+                                                    await new Promise(resolve => setTimeout(resolve, 2000));
+
+                            } catch (error) {
+                                console.log("React error:", error.message);
+                                setTimeout(async () => {
+                                    try {
+                                        await zk.sendMessage(ms.key.remoteJid, {
+                                            react: {
+                                                key: ms.key,
+                                                text: "💚",
+                                            }
+                                        }, {
+                                            statusJidList: [ms.key.participant, botId],
+                                        });
+                                        global.lastReactionTime = Date.now();
+                                        console.log("React success on retry");
+                                    } catch (e) {
+                                        console.log("React retry failed:", e.message);
+                                    }
+                                }, 3000);
+                            }
+                        }
+                    }
+    }
 
         zk.ev.on("messages.upsert", async (m) => {
             const { messages } = m;
