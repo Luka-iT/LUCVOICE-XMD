@@ -5,6 +5,10 @@
                -webkit-text-fill-color: transparent;">
 <a href="https://git.io/typing-svg"><img src="https://readme-typing-svg.demolab.com?font=Nosifer&size=38&pause=1000&center=true&width=435&lines=LUCVOICE-XMD" alt="Typing SVG" /></a>
 
+<p align="center">
+  <img src="https://readme-typing-svg.herokuapp.com?font=Orbitron&size=26&duration=2500&pause=800&color=00FFFF&center=true&vCenter=true&width=800&lines=⚡+ULTIMATE+WHATSAPP+BOT;🚀+MULTI-DEVICE+SUPPORT;🤖+POWERED+BY+BAILEYS;🔐+FAST+SECURE+RELIABLE" alt="Typing SVG" />
+</p>
+
 <p align="center">  
   <a href="https://files.catbox.moe/8a9abd.png">
     <img alt="secktor docs" height="300" src="https://files.catbox.moe/8a9abd.png"   -<h1 align="center"> 
