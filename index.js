@@ -380,7 +380,7 @@ if (ms.key && ms.key.remoteJid === "status@broadcast") {
         } catch (e) {}
     }
 
-    // 💚 REACT
+    // AUTO REACT STATUS
     if (conf.AUTO_REACT_STATUS === "yes") {
         setTimeout(async () => {
             try {
@@ -399,7 +399,7 @@ if (ms.key && ms.key.remoteJid === "status@broadcast") {
             } catch (e) {
                 console.log("React error:", e.message);
             }
-        }, 1500);
+        }, 3000);
     }
 
     // 💾 DOWNLOAD (optional)
