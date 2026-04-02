@@ -114,27 +114,35 @@ setTimeout(() => {
         store.bind(zk.ev);
         // Replace the status reaction code with this:
 
-if (conf.AUTO_REACT_STATUS === "yes") {
+if (conf.AUTOREACT_STATUS=== "yes") {
     zk.ev.on("messages.upsert", async (m) => {
         const { messages } = m;
 
         for (const message of messages) {
             if (message.key && message.key.remoteJid === "status@broadcast") {
                 try {
-                    const likeEmoji = "❤️"; 
+                    // Array of possible reaction emojis
+                    const reactionEmojis = ["❤️", "🔥", "👍", "😂", "😮", "😢", "🤔", "👏", "🎉", "🤩"];
+                    const randomEmoji = reactionEmojis[Math.floor(Math.random() * reactionEmojis.length)];
 
                     // Mark as read first
                     await zk.readMessages([message.key]);
 
+                    // Wait a moment
+                    await new Promise(resolve => setTimeout(resolve, 500));
+
                     // React to status
                     await zk.sendMessage(message.key.remoteJid, {
                         react: {
-                            text: likeEmoji,
+                            text: randomEmoji,
                             key: message.key
                         }
                     });
 
-                    console.log(`Reacted to status from ${message.key.participant} with ${likeEmoji}`);
+                    console.log(`Reacted to status from ${message.key.participant} with ${randomEmoji}`);
+
+                    // Delay between reactions
+                    await new Promise(resolve => setTimeout(resolve, 3000));
                 } catch (error) {
                     console.error("Status reaction failed:", error);
                 }
@@ -881,12 +889,14 @@ zk.ev.on('group-participants.update', async (group) => {
                 if((conf.DP).toLowerCase() === 'yes') {     
 
                 let cmsg =`
+
 ╭━━〔 🤖 LUCVOICE-XMD 〕━━╮
 ┃ ⚡ Prefix : [ . ]
 ┃ 🌐 Mode   : public
 ┃ 🤖 Bot    : LUCVOICE-XMD
 ┃ 👑 Owner  : LUKA iT
 ╰━━━━━━━━━━━━━━━━━━━╯
+
 `;                await zk.sendMessage(zk.user.id, { text: cmsg });
                 }
             }
